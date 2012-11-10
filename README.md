@@ -1,9 +1,9 @@
-# divvy - an open-source newsboard
+# divvy - an open-source linkboard
 
 ## Aims
 
 *   Be extremely simple to setup,
-*   Be a useful resource for ZF2 developers to lean from.
+*   Be a useful resource for ZF2 developers to learn from.
 
 ## License
 
