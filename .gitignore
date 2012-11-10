@@ -1,0 +1,6 @@
+# Dependencies managed by composer
+composer.lock
+vendor/
+
+# Cache directory
+data/

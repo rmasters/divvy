@@ -1,0 +1,47 @@
+{{ doctype() }}
+<html lang="en">
+<head>
+    {% block title %}
+    {{ headTitle('Divvy').setSeparator('-')|raw }}
+    {% endblock %}
+
+    {% block meta %}
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {{ headMeta() }}
+    {% endblock %}
+
+    {% block styles %}
+    <link rel="stylesheet" href="{{ basePath('/bootstrap/css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ basePath('/divvy/css/divvy.css') }}">
+    <link rel="stylesheet" href="{{ basePath('/bootstrap/css/bootstrap-responsive.min.css') }}">
+    {{ headLink() }}
+    {% endblock %}
+</head>
+<body>
+    <div class="navbar navbar-static-top">
+        <div class="navbar-inner">
+            <div class="container-fluid">
+                <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">Nav</a>
+
+                <a class="brand" href="{{ url('home') }}">Divvy</a>
+
+                <div class="nav-collapse collapse">
+                    <ul class="nav">
+                        <li><a href="{{ url('home') }}">Home</a></li>
+                    </ul>
+
+                    <ul class="nav pull-right">
+                        <li><a href="#">Login</a></li>
+                        <li><a href="#">Signup</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container-fluid">
+        {{ content|raw }}
+    </div>
+</body>
+</html>
