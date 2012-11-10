@@ -2,6 +2,7 @@
 return array(
     'modules' => array(
         // Dependencies
+        'DoctrineModule',
         'DoctrineORMModule',
         'ZfcTwig',
         // Application
