@@ -136,18 +136,18 @@ abstract class ModelBase implements InputFilterAwareInterface, \ArrayAccess
         if (strlen($name) > 3) {
             // get* and set*
             $prefix = substr($name, 0, 3);
-            if (in_array($prefix, ['get', 'set'])) {
+            if (in_array($prefix, array('get', 'set'))) {
                 $field = lcfirst(substr($name, 3));
 
                 // Pass to __set if number of args is 1
                 if ($prefix == 'set' && count($args) == 1) {
-                    call_user_func([$this, '__set'], $field, array_shift($args));
+                    call_user_func(array($this, '__set'), $field, array_shift($args));
                     return $this;
                 }
 
                 // Pass to __get if number of args is 0
                 if ($prefix == 'get' && count($args) == 0) {
-                    return call_user_func([$this, '__get'], $field);
+                    return call_user_func(array($this, '__get'), $field);
                 }
             }
         }
@@ -161,7 +161,7 @@ abstract class ModelBase implements InputFilterAwareInterface, \ArrayAccess
      * @return bool
      */
     public function offsetExists($name) {
-        return call_user_func([$this, '__isset'], $name);
+        return call_user_func(array($this, '__isset'), $name);
     }
 
     /**
@@ -170,7 +170,7 @@ abstract class ModelBase implements InputFilterAwareInterface, \ArrayAccess
      * @return mixed
      */
     public function offsetGet($name) {
-        return call_user_func([$this, '__get'], $name);
+        return call_user_func(array($this, '__get'), $name);
     }
 
     /**
@@ -180,7 +180,7 @@ abstract class ModelBase implements InputFilterAwareInterface, \ArrayAccess
      * @return void
      */
     public function offsetSet($name, $value) {
-        call_user_func([$this, '__set'], $name, $value);
+        call_user_func(array($this, '__set'), $name, $value);
     }
 
     /**
@@ -189,7 +189,7 @@ abstract class ModelBase implements InputFilterAwareInterface, \ArrayAccess
      * @return void
      */
     public function offsetUnset($name) {
-        call_user_func([$this, '__unset'], $name);
+        call_user_func(array($this, '__unset'), $name);
     }
 
     /**

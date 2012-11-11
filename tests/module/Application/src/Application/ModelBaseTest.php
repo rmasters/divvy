@@ -140,20 +140,20 @@ class ModelBaseTest extends PHPUnit_Framework_TestCase
     public function testExchangeArray() {
         $model = new TestModel;
 
-        $ret = $model->exchangeArray(['id' => 5, 'name' => 'Dawleys']);
+        $ret = $model->exchangeArray(array('id' => 5, 'name' => 'Dawleys'));
 
         $this->assertSame($ret, $model);
         $this->assertEquals($model->id, 5);
         $this->assertEquals($model->name, 'Dawleys');
 
         $this->setExpectedException('Exception');
-        $model->exchangeArray(['fake' => 123]);
+        $model->exchangeArray(array('fake' => 123));
     }
 
     public function testGetArrayCopy() {
         $model = new TestModel;
 
-        $this->assertEquals($model->getArrayCopy(), ['id' => 2, 'name' => null]);
+        $this->assertEquals($model->getArrayCopy(), array('id' => 2, 'name' => null));
     }
 
     public function testInputFilter() {
