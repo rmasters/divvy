@@ -66,6 +66,22 @@ class User extends ModelBase
     }
 
     /**
+     * Set the registration timestamp
+     *
+     * @param DateTime|string $timestamp DateTime or strtotime()-valid text
+     * @throws Exception If a string not acceptable by DateTime's constructor is passed
+     * @return $this
+     */
+    public function setRegisteredAt($timestamp) {
+        if (!$timestamp instanceof \DateTime) {
+            $timestamp = new \DateTime($timestamp);
+        }
+        $this->registeredAt = $timestamp;
+
+        return $this;
+    }
+
+    /**
      * Set a new password for the user
      *
      * Stores a bcrypt hash of the given password using the default Zend settings.

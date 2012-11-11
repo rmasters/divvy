@@ -8,6 +8,7 @@ return array(
         // Application
         'Application',
         'Users',
+        'Posts',
     ),
     'module_listener_options' => array(
         'config_glob_paths'    => array(

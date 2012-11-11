@@ -11,7 +11,8 @@ return array(
                 'class' => 'Doctrine\ORM\Mapping\Driver\AnnotationDriver',
                 'cache' => 'array',
                 'paths' => array(
-                    $entityPath('Users')
+                    $entityPath('Users'),
+                    $entityPath('Posts'),
                 ),
             ),
         ),
