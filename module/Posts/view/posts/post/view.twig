@@ -5,5 +5,11 @@
         {% if post.hasLink() %}<span class="small">({{ post.domain }})</span>{% endif %}
         </h1>
         <p>Posted at {{ post.postedAt|date("H:m jS M Y") }}</p>
+
+        <p>
+        Score: <strong>{{ post.score }}</strong>,
+        Pos: <strong>{{ post.positiveScore }}{% if post.positiveScore != post.positiveVotes|length %} ({{ post.positiveVotes|length }} votes){% endif %}</strong>,
+        Neg: <strong>{{ post.negativeScore }}{% if post.negativeScore != 0 - post.negativeVotes|length %} ({{ post.negativeVotes|length }} votes){% endif %}</strong>
+        </p>
     </div>
 </div>

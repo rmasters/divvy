@@ -53,6 +53,12 @@ class User extends ModelBase
     protected $registeredAt;
 
     /**
+     * Posts the user has voted on
+     * @ORM\OneToMany(targetEntity="Posts\Entity\Vote", mappedBy="user")
+     */
+    protected $votes;
+
+    /**
      * Constructor
      *
      * @param string|null $username

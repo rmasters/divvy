@@ -62,6 +62,12 @@ class Post extends ModelBase
     protected $postedAt;
 
     /**
+     * Votes for this post
+     * @ORM\OneToMany(targetEntity="Posts\Entity\Vote", mappedBy="post")
+     */
+    protected $votes;
+
+    /**
      * Constructor
      *
      * @param string|null Post title
@@ -94,6 +100,69 @@ class Post extends ModelBase
         $this->postedAt = $timestamp;
 
         return $this;
+    }
+
+    /**
+     * Get positive votes for this post
+     *
+     * @return \Doctrine\Common\Collections\ArrayCollection
+     */
+    public function getPositiveVotes() {
+        return $this->getVotes()->filter(function ($v) {
+            return $v->getScore() > 0;
+        });
+    }
+
+    /**
+     * Get positive score
+     *
+     * Generally this will be count($this->getPositiveVotes()), unless some
+     * weighted voting scheme is used (where vote.score != 1).
+     */
+    public function getPositiveScore() {
+        $score = 0;
+        foreach ($this->getPositiveVotes() as $vote) {
+            $score += $vote->getScore();
+        }
+        return $score;
+    }
+
+    /**
+     * Get negative votes for this post
+     *
+     * @return \Doctrine\Common\Collections\ArrayCollection
+     */
+    public function getNegativeVotes() {
+        return $this->getVotes()->filter(function ($v) {
+            return $v->getScore() < 0;
+        });
+    }
+
+    /**
+     * Get negative score
+     *
+     * Generally this will be count($this->getNegativeVotes()), unless some
+     * weighted voting scheme is used (where vote.score != -1).
+     */
+    public function getNegativeScore() {
+        $score = 0;
+        foreach ($this->getNegativeVotes() as $vote) {
+            $score += $vote->getScore();
+        }
+        return $score;
+    }
+
+    /**
+     * Get the score for the post
+     *
+     * @return int
+     */
+    public function getScore() {
+        $score = 0;
+        foreach ($this->getVotes() as $vote) {
+            $score += $vote->getScore();
+        }
+        return $score;
     }
 
     /**
