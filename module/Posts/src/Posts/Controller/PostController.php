@@ -27,7 +27,7 @@ class PostController extends \Zend\Mvc\Controller\AbstractActionController
                 $posts = $repo->findByWorst($perPage);
                 break;
             case 'top':
-                $posts = $repo->findByCurrent($perPage, new \DateTime);
+                $posts = $repo->findByCurrent($perPage, new \DateTime, $this->getRankingScheme());
                 break;
             default:
                 // 404
@@ -52,5 +52,14 @@ class PostController extends \Zend\Mvc\Controller\AbstractActionController
         }
 
         return new ViewModel(array('post' => $post));
+    }
+
+    public function getRankingScheme() {
+        $schemes = array(
+            'hackernews' => array(new \Posts\Ranking\HackerNews, 'score'),
+            'reddit' => array(new \Posts\Ranking\Reddit, 'score'),
+        );
+
+        return $schemes['hackernews'];
     }
 }

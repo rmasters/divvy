@@ -80,7 +80,22 @@ class PostRepository extends EntityRepository
      * Get the top ranking posts for a given time
      * @todo Implement
      */
-    public function findByCurrent($count, \DateTime $when) {
-        return new ArrayCollection($this->findAll());
+    public function findByCurrent($count, \DateTime $when, $rankingScheme) {
+        $posts = $this->findAll();
+
+        // Rank
+        $schemeScores = [];
+        foreach ($posts as $i => $post) {
+            $rank = call_user_func($rankingScheme, $post, $when);
+            $schemeScores[$i] = $rank;
+        }
+        sort($schemeScores);
+
+        $results = [];
+        foreach ($schemeScores as $i => $rank) {
+            $results[] = $posts[$i];
+        }
+
+        return new ArrayCollection($results);
     }
 }
