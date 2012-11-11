@@ -6,6 +6,14 @@ use \Zend\View\Model\ViewModel;
 
 class PostController extends \Zend\Mvc\Controller\AbstractActionController
 {
+    public function indexAction() {
+        $em = $this->getServiceLocator()->get('doctrine.entitymanager.orm_default'); 
+
+        $posts = $em->getRepository('Posts\Entity\Post')->findAll();
+
+        return new ViewModel(array('posts' => $posts));
+    }
+
     public function viewAction() {
         $em = $this->getServiceLocator()->get('doctrine.entitymanager.orm_default'); 
 

@@ -72,6 +72,14 @@ class Post extends ModelBase
         $this->setTitle($title);
     }
 
+    public function hasLink() {
+        return null !== $this->getLink();
+    }
+
+    public function getDomain() {
+        return parse_url($this->getLink(), PHP_URL_HOST);
+    }
+
     /**
      * Set the post creation timestamp
      *

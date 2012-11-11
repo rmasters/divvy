@@ -1,0 +1,12 @@
+<div class="row-fluid">
+<div class="span8">
+    {% for post in posts %}
+    <article>
+        <a href="{{ url('posts/view', {'id': post.id, 'slug': post.urlSlug}) }}">{{ post.title }}</a>
+        {% if post.hasLink() %}<span class="small">({{ post.domain }})</span>{% endif %}
+    </article>
+    {% else %}
+    <p>No posts to display</p>
+    {% endfor %}
+</div>
+</div>

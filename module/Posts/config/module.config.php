@@ -12,20 +12,31 @@ namespace Posts;
 return array(
     'router' => array(
         'routes' => array(
-            'post' => array(
+            'posts' => array(
                 'type' => 'segment',
                 'options' => array(
-                    'route' => '/:id[/:slug]',
-                    'constraints' => array(
-                        'id' => '[0-9]+',
-                        'slug' => '[-_A-Za-z0-9]+',
-                    ),
+                    'route' => '/',
                     'defaults' => array(
                         'controller' => 'Posts\Controller\Post',
-                        'action' => 'view',
+                        'action' => 'index',
                     ),
                 ),
                 'may_terminate' => true,
+                'child_routes' => array(
+                    'view' => array(
+                        'type' => 'segment',
+                        'options' => array(
+                            'route' => ':id[/:slug]',
+                            'constraints' => array(
+                                'id' => '[0-9]+',
+                                'slug' => '[-_A-Za-z0-9]+',
+                            ),
+                            'defaults' => array(
+                                'action' => 'view',
+                            ),
+                        ),
+                     ),
+                 ),
             ),
         ),
     ),
