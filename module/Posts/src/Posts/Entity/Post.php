@@ -16,7 +16,7 @@ use Zend\InputFilter\InputFilter;
 /**
  * A post to the site
  *
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="Posts\Entity\Repository\PostRepository")
  * @ORM\Table(name="post")
  * @package Entities
  */

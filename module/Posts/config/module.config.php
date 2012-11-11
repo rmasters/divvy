@@ -15,10 +15,14 @@ return array(
             'posts' => array(
                 'type' => 'segment',
                 'options' => array(
-                    'route' => '/',
+                    'route' => '[/:sorting]',
+                    'constraints' => array(
+                        'sorting' => '(best|worst|old|new|top)?',
+                    ),
                     'defaults' => array(
                         'controller' => 'Posts\Controller\Post',
                         'action' => 'index',
+                        'sorting' => 'top',
                     ),
                 ),
                 'may_terminate' => true,
@@ -35,8 +39,8 @@ return array(
                                 'action' => 'view',
                             ),
                         ),
-                     ),
-                 ),
+                    ),
+                ),
             ),
         ),
     ),

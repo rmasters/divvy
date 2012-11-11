@@ -24,11 +24,14 @@
             <div class="container-fluid">
                 <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">Nav</a>
 
-                <a class="brand" href="{{ url('posts') }}">Divvy</a>
+                <a class="brand" href="{{ url('posts', {'sorting': ''}) }}">Divvy</a>
 
                 <div class="nav-collapse collapse">
                     <ul class="nav">
-                        <li><a href="{{ url('posts') }}">Frontpage</a></li>
+                        <li><a href="{{ url('posts', {'sorting' : ''}) }}">Top</a></li>
+                        <li><a href="{{ url('posts', {'sorting' : 'new'}) }}">New</a></li>
+                        <li><a href="{{ url('posts', {'sorting' : 'best'}) }}">Best</a></li>
+                        <li><a href="{{ url('posts', {'sorting' : 'worst'}) }}">Worst</a></li>
                     </ul>
 
                     <ul class="nav pull-right">
