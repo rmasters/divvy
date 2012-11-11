@@ -40,6 +40,9 @@ class UserTest extends PHPUnit_Framework_TestCase
     public function testToString() {
         $user = new User('rmas');
         $this->assertEquals((string) $user, 'rmas');
+
+        $user = new User;
+        $this->assertEquals((string) $user, '');
     }
 
     public function testInputFilter() {
