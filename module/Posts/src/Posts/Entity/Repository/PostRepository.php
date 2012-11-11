@@ -56,7 +56,7 @@ class PostRepository extends EntityRepository
         $qb = $this->getEntityManager()->createQueryBuilder();
         $qb->select('p')
             ->from('Posts\Entity\Post', 'p')
-            ->orderBy('p.score', 'ASC')
+            ->orderBy('p.score', 'DESC')
             ->setMaxResults($count);
 
         return new ArrayCollection($qb->getQuery()->getResult());
@@ -70,7 +70,7 @@ class PostRepository extends EntityRepository
         $qb = $this->getEntityManager()->createQueryBuilder();
         $qb->select('p')
             ->from('Posts\Entity\Post', 'p')
-            ->orderBy('p.score', 'DESC')
+            ->orderBy('p.score', 'ASC')
             ->setMaxResults($count);
 
         return new ArrayCollection($qb->getQuery()->getResult());

@@ -2,6 +2,7 @@
 <div class="span8">
     {% for post in posts %}
     <article>
+        <strong>{{ post.score }}</strong>
         <a href="{{ url('posts/view', {'id': post.id, 'slug': post.urlSlug}) }}">{{ post.title }}</a>
         {% if post.hasLink() %}<span class="small">({{ post.domain }})</span>{% endif %}
     </article>

@@ -62,6 +62,18 @@ class Post extends ModelBase
     protected $postedAt;
 
     /**
+     * The score of the post, as calculated by database triggers on vote
+     * @ORM\Column(type="integer", nullable=false)
+     */
+    protected $score = 0;
+
+    /**
+     * When the score field was updated, by database triggers
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    protected $scoreUpdatedAt;
+
+    /**
      * Votes for this post
      * @ORM\OneToMany(targetEntity="Posts\Entity\Vote", mappedBy="post")
      */
@@ -157,7 +169,7 @@ class Post extends ModelBase
      *
      * @return int
      */
-    public function getScore() {
+    public function getActualScore() {
         $score = 0;
         foreach ($this->getVotes() as $vote) {
             $score += $vote->getScore();
